@@ -1,0 +1,48 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="edu.uw.loaderdemo.MovieFragment">
+
+    <ImageButton
+        android:id="@+id/btnMovieSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_search"
+        />
+    <EditText
+        android:id="@+id/txtMovieSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Movie title..."
+        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@id/btnMovieSearch"
+        android:layout_toLeftOf="@+id/btnClearSearch"
+        />
+    <ImageButton
+        android:id="@+id/btnClearSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        android:layout_alignParentRight="true"
+        />
+
+    <TextView
+        android:id="@+id/txtMovie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@id/btnMovieSearch"
+        />
+    
+    <ImageView
+        android:id="@+id/imgMovie"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/txtMovie"
+        />
+    
+</RelativeLayout>
