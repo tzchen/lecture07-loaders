@@ -1,8 +1,12 @@
 package edu.uw.loaderdemo;
 
 
+import android.content.ContentResolver;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.UserDictionary;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SimpleCursorAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,14 +41,36 @@ public class WordListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_word_list, container, false);
 
+        // URI
+//        Log.v(TAG, UserDictionary.Words.CONTENT_URI);
+        String[] projection = { UserDictionary.Words.WORD, UserDictionary.Words._ID };
+
+        // get data from db
+        Cursor cursor = getActivity().getContentResolver().query(
+                UserDictionary.Words.CONTENT_URI, projection, null, null, null);
+
+//        cursor.moveToFirst();
+//        Log.v(TAG, cursor.getString(0));
+
+
         //model
         String[] data = {"Dog","Cat","Android","Inconceivable"};
 
         //controller
         AdapterView listView = (AdapterView)rootView.findViewById(R.id.wordListView);
 
-        adapter = new ArrayAdapter<String>(
-                getActivity(), R.layout.list_item_layout, R.id.txtListItem, data);
+        int[] views = { };
+        adapter = new SimpleCursorAdapter(
+                getActivity(),
+                R.layout.list_item_layout,
+                cursor,
+                new String[] {UserDictionary.Words.WORD},
+                new int[] {R.id.txtListItem},
+
+        );
+
+//        adapter = new ArrayAdapter<String>(
+//                getActivity(), R.layout.list_item_layout, R.id.txtListItem, data);
         listView.setAdapter(adapter);
 
 
