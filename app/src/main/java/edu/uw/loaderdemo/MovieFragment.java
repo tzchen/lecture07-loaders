@@ -12,16 +12,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.JsonObjectRequest;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
@@ -93,40 +83,6 @@ public class MovieFragment extends Fragment {
             return; //break
         }
 
-        //the request queue
-        RequestQueue queue = VolleySingleton.getInstance(getActivity()).getRequestQueue();
-
-        //build a requst
-        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, urlString, null,
-            new Response.Listener<JSONObject>() {
-
-                @Override
-                public void onResponse(JSONObject response) {
-                    try {
-                        String title = response.getString("Title");
-                        String year = response.getString("Year");
-                        movieText.setText(title+" ("+year+")");
-                        fetchMoviePoster(response.getString("Poster"));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }, new Response.ErrorListener() {
-                public void onErrorResponse(VolleyError error) { /* empty for now */ }
-            }
-        );
-
-        //add the request to the queue to send the HTTP Request
-        queue.add(jsonRequest);
+        //TODO: send request for data from url
     }
-
-    //download the movie poster using an ImageLoader
-    private void fetchMoviePoster(String url){
-        //loader utilizes the requestQueue!
-        ImageLoader loader = VolleySingleton.getInstance(getActivity()).getImageLoader();
-
-        //get the image from the loader
-        loader.get(url, ImageLoader.getImageListener(movieImage, 0, 0));
-    }
-
 }

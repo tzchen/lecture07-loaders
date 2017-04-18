@@ -5,7 +5,7 @@ android {
     buildToolsVersion '25.0.0'
 
     defaultConfig {
-        applicationId "edu.uw.decorations"
+        applicationId "edu.uw.loaderdemo"
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
