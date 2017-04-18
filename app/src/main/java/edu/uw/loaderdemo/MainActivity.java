@@ -14,8 +14,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //show fragment
-        Fragment fragment = WordListFragment.newInstance();
-//        Fragment fragment = MovieFragment.newInstance();
+//        Fragment fragment = WordListFragment.newInstance();
+        Fragment fragment = MovieFragment.newInstance();
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, fragment)
